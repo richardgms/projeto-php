@@ -10,8 +10,11 @@
     <main>
 
         <section id="menu">
-            <h2>Menu</h2>
-            <img src="./assets/menu.svg" alt="" width="25px">
+
+            <div id="top-menu">
+                <h2>Menu</h2>
+                <img src="./assets/menu.svg" alt="" width="25px">
+            </div>
 
             <section id="tasks">
                 <h2>Tarefas</h2>
@@ -23,8 +26,10 @@
                 </ul>
             </section>
 
+            <hr class="divider">
+
             <section id="list">
-                <h2>List</h2>
+                <h2>Listas</h2>
                 <ul>
                     <li><a href="#personal">Pessoal</a></li>
                     <li><a href="#work">Trabalho</a></li>
@@ -56,12 +61,6 @@
 
             <button id="add-task">+ Adicionar Nova Tarefa</button>
         </div>
-
-        <section>
-            <h3>Adicionar Nova Tarefa</h3>
-        </section>
-
-        
 
     </main>
 </body>
