@@ -1,14 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 body {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
     margin: 0;
     padding: 0;
-    display: flex; 
+    display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     background-color: #c6d1a6;
 }
 
-h1,h2,h3,h4,h5,h6{
+h1,h2,h3,h4,h5,h6 {
     margin: 0;
 }
 
@@ -17,18 +22,21 @@ main {
     width: 80%;
     height: 90%;
     background-color: #FAFAFA;
-    border-radius: 10px;
+    border-radius: 30px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
 }
 
 #menu {
-    width: 30%;
+    width: 25%;
     height: 100%;
     background-color: #F0F0F0;
     text-align: center;
     padding: 10px;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 #content {
@@ -37,15 +45,29 @@ main {
     text-align: left;
 }
 
-#content h1, #content h2{
+#content h1, #content h2 {
+    color: #333333;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
     display: inline-flex;
     gap: 20px;
+}
+
+#content h2{
+    padding: 5px 7.5px;
+    border: 1px solid #F1F1F1;
+    border-radius: 10px;
 }
 
 ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
+}
+
+ul li {
+    margin-bottom: 10px;
 }
 
 ul li a {
@@ -56,4 +78,69 @@ ul li a {
 
 ul li.add-new a {
     font-weight: bold;
+}
+
+#top-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+#top-menu h2 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    margin: 0;
+    font-size: 18px;
+    color: #333333;
+    flex-shrink: 0;
+    display: inline;
+}
+
+#top-menu img {
+    width: 25px;
+    height: auto;
+    flex-shrink: 0;
+    display: inline;
+    cursor: pointer;
+}
+
+.divider {
+    border: none;
+    border-top: 1px solid #e2e2e2;
+    position: relative;
+    left: -10px; /* Compensa o padding da esquerda */
+    width: calc(100% + 20px); /* Soma a largura ao padding esquerdo e direito */
+}
+
+
+section #list, section #tasks{
+    margin: 40px 0px;
+}
+
+#tasks, #list, #others {
+    text-align: left;
+    padding-left: 15px;
+    margin: 0;
+}
+
+#tasks ul, #list ul, #others ul {
+    padding-left: 20px;
+}
+
+#tasks h2, #list h2, #others h2 {
+    color: #333333;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+#others {
+    margin-top: auto;
+    text-align: left;
 }
