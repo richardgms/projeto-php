@@ -144,3 +144,59 @@ section #list, section #tasks{
     margin-top: auto;
     text-align: left;
 }
+
+#button-new-task{
+    margin-top: 50px;
+}
+
+#add-task{
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: #999999;
+    text-align: left;
+    border: 1px solid #e2e2e2;
+    border-radius: 10px;
+    background-color: #FAFAFA;
+    padding: 15px 0px;
+    padding-left: 10px;
+    width: calc(100% + 20px);
+}
+
+#content-header h1, #content-header h2{
+    margin-right: 20px;
+    font-size: 40px;
+}
+
+/* Estilo para todas as listas */
+#tasks ul, #list ul, #others ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Estilo para os itens das listas */
+#tasks ul li, #list ul li, #others ul li {
+    display: flex; /* Alinha os ícones e o texto lado a lado */
+    align-items: center; /* Centraliza verticalmente o ícone e o texto */
+    margin-bottom: 10px; /* Espaço entre os itens */
+}
+
+/* Estilo para os ícones */
+#tasks ul li .icon, #list ul li .icon, #others ul li .icon {
+    width: 16px; /* Ajusta o tamanho dos ícones */
+    height: auto; /* Mantém a proporção dos ícones */
+    margin-right: 10px; /* Espaço entre o ícone e o texto */
+}
+
+/* Estilo para os links */
+#tasks ul li a, #list ul li a, #others ul li a {
+    text-decoration: none; /* Remove o sublinhado dos links */
+    color: inherit; /* Herda a cor do texto pai */
+    cursor: pointer; /* Mostra o cursor de mão */
+}
+
+/* Estilo especial para o item "Adicionar Nova Lista" */
+#list ul li.add-new .icon {
+    width: 20px; /* Ícone maior para destacar */
+}
