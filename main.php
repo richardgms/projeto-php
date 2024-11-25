@@ -92,6 +92,10 @@
                 <button id="add-task">+ Adicionar Nova Tarefa</button>
             </div>
 
+            <div id="task-container">
+                <!-- Novas tarefas serão adicionadas aqui -->
+            </div>
+
         </div>
 
         <div id="task-create" style="display: none;">
@@ -106,10 +110,12 @@
                 <textarea id="task-desc" name="task-desc" placeholder="Descrição"></textarea>
 
                 <label for="choose-list">Lista:</label>
-                <select name="Lista" id="list">
-                    <option value="personal">Pessoal</option>
-                    <option value="work">Trabalho</option>
+                <select name="Lista" id="task-list">
+                    <option value="Pessoal" selected>Pessoal</option>
+                    <option value="Trabalho">Trabalho</option>
                 </select>
+
+
 
                 <label for="due-date">Prazo:</label>
                 <input type="date" id="due-date">

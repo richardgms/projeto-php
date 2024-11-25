@@ -335,3 +335,86 @@ section #list, section #tasks {
     border-color: #adadad;
     box-shadow: 0 0 5px rgba(102, 102, 102, 0.3);
 }
+
+/* CSS Task Container */
+
+#task-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.task-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.task-item-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.task-item-left img {
+    width: 20px;
+    height: 20px;
+}
+
+.task-item-left .task-item-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.task-item-content h3 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.task-item-content small {
+    font-size: 12px;
+    color: #666;
+}
+
+.task-item-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.task-item-right .task-item-tag {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #007bff;
+    text-transform: capitalize;
+}
+
+.task-item-due-date {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: #999;
+}
+
+.task-item-due-date img {
+    width: 14px;
+    height: 14px;
+}
