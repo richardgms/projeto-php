@@ -1,7 +1,7 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #fdfcfb; /* Tom pastel claro */
-    color: #8a7d6e; /* Tom pastel neutro */
+    background-color: #fdfcfb; 
+    color: #8a7d6e;
     margin: 0;
     padding: 0;
 }
@@ -23,7 +23,7 @@ body {
 
 fieldset {
     padding: 15px;
-    border: none; /* Remove a borda do fieldset */
+    border: none; 
     border-radius: 8px;
     background-color: #ffffff;
 }
@@ -34,7 +34,7 @@ legend {
     color: #8a7d6e;
     padding: 5px 10px;
     border-radius: 4px;
-    background-color: #f4eadd; /* Tom pastel claro */
+    background-color: #f4eadd; 
     border: 1px solid #e4d9c9;
 }
 
@@ -46,7 +46,7 @@ legend {
 .inputUser {
     background: none;
     border: none;
-    border-bottom: 1px solid #c1b4a1; /* Tom pastel */
+    border-bottom: 1px solid #c1b4a1; 
     outline: none;
     color: #8a7d6e;
     font-size: 16px;
@@ -56,7 +56,7 @@ legend {
 }
 
 .inputUser:focus {
-    border-bottom: 1px solid #b2a391; /* Suave destaque */
+    border-bottom: 1px solid #b2a391; 
 }
 
 .labelInput {
@@ -74,7 +74,7 @@ legend {
     top: -18px;
     left: 0;
     font-size: 12px;
-    color: #b2a391; /* Destaque suave */
+    color: #b2a391; 
 }
 
 #data_nasc {
@@ -84,7 +84,7 @@ legend {
     outline: none;
     font-size: 14px;
     width: 100%;
-    background-color: #fdfbf8; /* Fundo pastel claro */
+    background-color: #fdfbf8; 
     color: #8a7d6e;
     transition: border-color 0.3s ease;
 }
@@ -94,7 +94,7 @@ legend {
 }
 
 #submit {
-    background-color: #c7b8a9; /* Tom pastel */
+    background-color: #c7b8a9; 
     color: #ffffff;
     width: 100%;
     border: none;
@@ -106,5 +106,5 @@ legend {
 }
 
 #submit:hover {
-    background-color: #8a7d6e; /* Destaque suave */
+    background-color: #8a7d6e; 
 }
