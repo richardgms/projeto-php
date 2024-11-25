@@ -147,6 +147,17 @@
 
         </div>
 
+        <div id="confirm-modal" style="display: none;">
+            <div class="modal-content">
+                <p>Tem certeza de que deseja excluir esta tarefa?</p>
+                <div class="modal-buttons">
+                    <button id="confirm-delete">Confirmar</button>
+                    <button id="cancel-delete">Cancelar</button>
+                </div>
+            </div>
+        </div>
+
+
     </main>
 
     <script src="./js/main.js"></script>

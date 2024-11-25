@@ -418,3 +418,105 @@ section #list, section #tasks {
     width: 14px;
     height: 14px;
 }
+
+#task-create-buttons {
+    display: flex;
+    justify-content: flex-end; /* Alinha os botões à direita */
+    gap: 15px; /* Espaçamento horizontal entre os botões */
+    margin-bottom: 10px; /* Espaçamento superior para separar do conteúdo acima */
+}
+
+#task-create-buttons button {
+    padding: 5px 20px;
+    font-size: 14px;
+    font-family: "Poppins", sans-serif;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Botão de excluir */
+#task-create-buttons #delete-task {
+    background-color: #33333300; /* Branco */
+    color: #333333; /* Texto escuro */
+    border: 1px solid #aaaaaa;
+}
+
+#task-create-buttons #delete-task:hover {
+    background-color: #00000015; /* Cinza claro ao passar o mouse */
+}
+
+/* Botão de salvar */
+#task-create-buttons #save-changes {
+    background-color: #948871; /* Amarelo */
+    color: #ffffff; /* Texto escuro */
+}
+
+#task-create-buttons #save-changes:hover {
+    background-color: #635b4d; /* Amarelo mais forte ao passar o mouse */
+}
+
+#confirm-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px;
+}
+
+.modal-content p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: center; /* Centraliza os botões */
+    gap: 10px; /* Reduz o espaço horizontal entre os botões */
+    margin-top: 20px; /* Espaçamento superior */
+}
+
+.modal-buttons button {
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Botão Confirmar */
+#confirm-delete {
+    background-color: #FF6B6B; /* Vermelho */
+    color: #fff;
+}
+
+#confirm-delete:hover {
+    background-color: #ff4d4d;
+}
+
+/* Botão Cancelar */
+#cancel-delete {
+    background-color: #ddd; /* Cinza claro */
+    color: #333;
+}
+
+#cancel-delete:hover {
+    background-color: #ccc;
+}
