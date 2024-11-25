@@ -1,0 +1,113 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9; 
+    color: #7A6F5D;
+    margin: 0;
+    padding: 0;
+}
+
+.box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
+    padding: 20px 30px; 
+    border-radius: 12px;
+    width: 40%; 
+    max-width: 500px; 
+    min-width: 320px; 
+    text-align: center;
+    color: #7A6F5D;
+}
+
+
+
+fieldset {
+    border: 1px solid #C6D1A6; 
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #ffffff; 
+}
+
+legend {
+    font-size: 14px;
+    font-weight: bold;
+    color: #7A6F5D; 
+    padding: 5px 10px;
+    border-radius: 4px;
+    background-color: #C6D1A6; 
+    border: 1px solid #C6D1A6;
+}
+
+.inputBox {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.inputUser {
+    background: none;
+    border: none;
+    border-bottom: 1px solid #7A6F5D; 
+    outline: none;
+    color: #7A6F5D;
+    font-size: 16px;
+    width: 100%;
+    padding: 5px;
+    transition: all 0.3s ease;
+}
+
+.inputUser:focus {
+    border-bottom: 1px solid #82BFA0; 
+}
+
+.labelInput {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    font-size: 14px;
+    color: #C6D1A6; 
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.inputUser:focus ~ .labelInput,
+.inputUser:valid ~ .labelInput {
+    top: -18px;
+    left: 0;
+    font-size: 12px;
+    color: #82BFA0; 
+}
+
+#data_nasc {
+    border: 1px solid #C6D1A6;
+    padding: 10px;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+    width: 80%;
+    background-color: #f5f5f5; 
+    color: #7A6F5D;
+    transition: all 0.3s ease;
+}
+
+#data_nasc:focus {
+    border-color: #82BFA0;
+}
+
+#submit {
+    background-color: #82BFA0; 
+    color: #FFF; 
+    width: 100%;
+    border: none;
+    padding: 12px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+#submit:hover {
+    background-color: #7A6F5D; 
+}
