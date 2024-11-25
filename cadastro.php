@@ -14,7 +14,7 @@
     $result = mysqli_query($conexao, "INSERT INTO usuarios(nome,senha,email,telefone,data_nasc) 
     VALUES ('$nome','$senha','$email','$telefone','$data_nasc')");
 
-    header('Location: login.php');
+    header('Location: index.php');
 }
      
 
@@ -61,7 +61,7 @@
                 
                 <input type="submit" name="submit" id="submit">
                 <br> <br>
-                <a href="login.php">Login</a>
+                <a href="index.php">Login</a>
             </fieldset>
         </form>
     </div>
