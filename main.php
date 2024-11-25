@@ -13,7 +13,7 @@
 
             <div id="top-menu">
                 <h2>Menu</h2>
-                <img src="./assets/menu.svg" alt="" width="25px">
+                <img id="menu-icon-close" src="./assets/menu.svg" alt="Fechar Menu" width="25px">
             </div>
 
             <section id="tasks">
@@ -37,7 +37,6 @@
                     </li>
                 </ul>
             </section>
-
 
             <hr class="divider">
 
@@ -76,9 +75,9 @@
 
         </section>
 
-        
-
         <div id="content">
+
+            <img id="menu-icon-open" src="./assets/menu.svg" alt="Abrir Menu" width="25px" style="display: none;">
 
             <div id="content-header">
                 <h1>Hoje</h1>
@@ -95,6 +94,33 @@
 
         </div>
 
+        <div id="task-create" style="display: none;">
+
+            <div id="top-task-create">
+                <h2>Tarefa:</h2>
+                <img id="taskCreate-icon-close" src="./assets/close.svg" alt="Fechar Menu" width="25px">
+            </div>
+
+            <div id="task-form">
+                <input type="text" id="task-title" placeholder="Título da Tarefa">
+                <textarea id="task-desc" name="task-desc" placeholder="Descrição"></textarea>
+
+                <label for="choose-list">Lista:</label>
+                <select name="Lista" id="list">
+                    <option value="personal">Pessoal</option>
+                    <option value="work">Trabalho</option>
+                </select>
+
+                <label for="due-date">Prazo:</label>
+                <input type="date" id="due-date">
+            </div>
+
+            <button type="submit">Criar</button>
+
+        </div>
+
     </main>
+
+    <script src="./js/main.js"></script>
 </body>
 </html>
