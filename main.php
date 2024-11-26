@@ -49,14 +49,6 @@
                         <img src="./assets/list.svg" alt="Ícone" class="icon">
                         <a href="#today">Hoje</a>
                     </li>
-                    <li>
-                        <img src="./assets/calendar.svg" alt="Ícone" class="icon">
-                        <a href="#calendar">Calendário</a>
-                    </li>
-                    <li>
-                        <img src="./assets/sticky-note.svg" alt="Ícone" class="icon">
-                        <a href="#sticky-wall">Mural</a>
-                    </li>
                 </ul>
             </section>
 
@@ -73,20 +65,12 @@
                         <img src="./assets/square2.svg" alt="Ícone" class="icon">
                         <a href="#work">Trabalho</a>
                     </li>
-                    <li class="add-new">
-                        <img src="./assets/add.svg" alt="Ícone de adicionar" class="icon">
-                        <a href="#add-new-list">Adicionar Nova Lista</a>
-                    </li>
                 </ul>
             </section>
 
 
             <section id="others">
                 <ul>
-                    <li>
-                        <img src="./assets/configuration.svg" alt="Ícone de configurações" class="icon">
-                        <a href="#settings">Configurações</a>
-                    </li>
                     <li>
                         <img src="./assets/logout.svg" alt="Ícone de sair" class="icon">
                         <a href="#signout">Sair</a>
@@ -156,7 +140,6 @@
                 </div>
             </div>
         </div>
-
 
     </main>
 
