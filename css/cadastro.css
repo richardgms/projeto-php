@@ -1,7 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #fdfcfb; 
-    color: #8a7d6e;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    background-color: #c6d1a6; 
+    color: #333;
     margin: 0;
     padding: 0;
 }
@@ -18,7 +22,7 @@ body {
     width: 90%;
     max-width: 400px;
     text-align: center;
-    color: #8a7d6e;
+    color: #333;
 }
 
 fieldset {
@@ -31,11 +35,11 @@ fieldset {
 legend {
     font-size: 14px;
     font-weight: bold;
-    color: #8a7d6e;
+    color: #ffffff;
     padding: 5px 10px;
     border-radius: 4px;
-    background-color: #f4eadd; 
-    border: 1px solid #e4d9c9;
+    background-color: #82BFA0; 
+    border: 1px solid #82BFA0;
 }
 
 .inputBox {
@@ -46,9 +50,9 @@ legend {
 .inputUser {
     background: none;
     border: none;
-    border-bottom: 1px solid #c1b4a1; 
+    border-bottom: 1px solid #82BFA0; 
     outline: none;
-    color: #8a7d6e;
+    color: #333;
     font-size: 16px;
     width: 100%;
     padding: 5px;
@@ -56,7 +60,7 @@ legend {
 }
 
 .inputUser:focus {
-    border-bottom: 1px solid #b2a391; 
+    border-bottom: 1px solid #82BFA0; 
 }
 
 .labelInput {
@@ -78,23 +82,29 @@ legend {
 }
 
 #data_nasc {
-    border: 1px solid #e4d9c9;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    border: 1px solid #82BFA0;
     padding: 10px;
     border-radius: 8px;
     outline: none;
     font-size: 14px;
     width: 100%;
     background-color: #fdfbf8; 
-    color: #8a7d6e;
+    color: #333;
     transition: border-color 0.3s ease;
 }
 
 #data_nasc:focus {
-    border-color: #b2a391;
+    border-color: #82BFA0;
 }
 
 #submit {
-    background-color: #c7b8a9; 
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    background-color: #82BFA0; 
     color: #ffffff;
     width: 100%;
     border: none;
@@ -106,5 +116,13 @@ legend {
 }
 
 #submit:hover {
-    background-color: #8a7d6e; 
+    background-color: #333; 
+}
+
+a {
+    text-decoration: none;
+}
+
+a:visited{
+    color: #333;
 }
