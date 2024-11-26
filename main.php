@@ -89,6 +89,7 @@
                 <h1>Hoje</h1>
                 <h2>
                     <?php
+                    date_default_timezone_set('America/Sao_Paulo');
                     echo date("d");
                     ?>
                 </h2>
