@@ -9,9 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const buttonCreateTask = document.querySelector("#task-create button");
     const taskContainer = document.getElementById("task-container");
 
-    // Novo: Identificar o modal de edição
     let isEditing = false;
-    let taskBeingEdited = null; // Tarefa que está sendo editada
+    let taskBeingEdited = null;
 
     // Ocultar o menu
     menuIconClose.addEventListener("click", function () {
@@ -30,15 +29,15 @@ document.addEventListener("DOMContentLoaded", function () {
     // Fechar modal de criação de tarefa
     closeTask.addEventListener("click", function () {
         taskCreate.style.display = "none";
-        isEditing = false; // Reseta o estado de edição
+        isEditing = false;
         taskBeingEdited = null;
     });
 
     // Abrir modal de criação de tarefa
     buttonAddTask.addEventListener("click", function () {
         taskCreate.style.display = "flex";
-        resetForm(); // Limpar o formulário
-        isEditing = false; // Garantir que não é edição
+        resetForm();
+        isEditing = false;
     });
 
     // Criar uma nova tarefa
@@ -46,26 +45,23 @@ document.addEventListener("DOMContentLoaded", function () {
         const taskTitle = document.getElementById("task-title").value.trim();
         const taskDueDate = document.getElementById("due-date").value;
         const taskDesc = document.getElementById("task-desc").value.trim();
-
-        // Obter a lista selecionada
         const taskListSelect = document.getElementById("task-list");
         const taskList = taskListSelect.value;
 
-        // Validação do título da tarefa
         if (!taskTitle) {
             alert("Por favor, insira um título para a tarefa.");
             return;
         }
 
         if (isEditing && taskBeingEdited) {
-            // Atualizar a tarefa existente
             taskBeingEdited.querySelector(".task-item-content h3").textContent = taskTitle;
             taskBeingEdited.querySelector(".task-item-due-date span").textContent = taskDueDate || "Sem prazo";
             taskBeingEdited.querySelector(".task-item-tag").textContent = taskList;
             taskBeingEdited.querySelector(".task-item-tag").style.backgroundColor =
                 taskList === "Pessoal" ? "#F4A259" : "#8AB6D6";
+
+            taskBeingEdited.dataset.description = taskDesc;
         } else {
-            // Criar um novo elemento de tarefa
             const taskItem = document.createElement("div");
             taskItem.classList.add("task-item");
 
@@ -74,10 +70,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             taskItem.innerHTML = `
                 <div class="task-item-left">
-                    <input type="checkbox">
+                    <input type="checkbox" class="task-checkbox">
                     <div class="task-item-content">
                         <h3>${taskTitle}</h3>
-                        <small>${taskDesc}</small>
                     </div>
                 </div>
                 <div class="task-item-right">
@@ -89,12 +84,28 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
             `;
 
-            // Adicionar evento para editar a tarefa
+            taskItem.dataset.description = taskDesc;
+
+            const checkbox = taskItem.querySelector(".task-checkbox");
+            const taskTitleElement = taskItem.querySelector(".task-item-content h3");
+
+            // Evento para riscar o título ao marcar/desmarcar o checkbox
+            checkbox.addEventListener("change", function (event) {
+                if (checkbox.checked) {
+                    taskTitleElement.style.textDecoration = "line-through";
+                    taskTitleElement.style.color = "#999";
+                } else {
+                    taskTitleElement.style.textDecoration = "none";
+                    taskTitleElement.style.color = "#000";
+                }
+                event.stopPropagation(); // Impedir que o clique no checkbox abra o painel de edição
+            });
+
+            // Evento para abrir o modal de edição ao clicar fora do checkbox
             taskItem.addEventListener("click", function () {
                 openEditModal(taskItem);
             });
 
-            // Adicionar a nova tarefa ao contêiner
             if (taskContainer) {
                 taskContainer.appendChild(taskItem);
             } else {
@@ -102,21 +113,16 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
 
-        // Limpar os campos do formulário
         resetForm();
-
-        // Fechar o modal de criação/edição de tarefa
         taskCreate.style.display = "none";
     });
 
-    // Função para abrir o modal de edição
     function openEditModal(taskItem) {
         isEditing = true;
         taskBeingEdited = taskItem;
 
-        // Preencher o formulário com os dados da tarefa
         const taskTitle = taskItem.querySelector(".task-item-content h3").textContent;
-        const taskDesc = taskItem.querySelector(".task-item-content small").textContent;
+        const taskDesc = taskItem.dataset.description || "";
         const taskDueDate = taskItem.querySelector(".task-item-due-date span").textContent;
         const taskList = taskItem.querySelector(".task-item-tag").textContent;
 
@@ -127,12 +133,10 @@ document.addEventListener("DOMContentLoaded", function () {
         const taskListSelect = document.getElementById("task-list");
         taskListSelect.value = taskList;
 
-        // Substituir botão "Criar" por "Salvar Alterações" e "Excluir Tarefa"
         const buttonArea = document.querySelector("#task-create button");
         buttonArea.textContent = "Salvar Alterações";
         buttonArea.id = "save-changes";
 
-        // Criar contêiner para botões se não existir
         let buttonContainer = document.getElementById("task-create-buttons");
         if (!buttonContainer) {
             buttonContainer = document.createElement("div");
@@ -140,13 +144,9 @@ document.addEventListener("DOMContentLoaded", function () {
             buttonArea.parentNode.appendChild(buttonContainer);
         }
 
-        // Limpar contêiner de botões para evitar duplicação
         buttonContainer.innerHTML = "";
-
-        // Adicionar botão "Salvar Alterações"
         buttonContainer.appendChild(buttonArea);
 
-        // Adicionar botão "Excluir Tarefa"
         const deleteButton = document.createElement("button");
         deleteButton.id = "delete-task";
         deleteButton.textContent = "Excluir Tarefa";
@@ -158,7 +158,6 @@ document.addEventListener("DOMContentLoaded", function () {
         taskCreate.style.display = "flex";
     }
 
-    // Função para mostrar o modal de confirmação
     function showConfirmModal() {
         const confirmModal = document.getElementById("confirm-modal");
         const confirmDeleteButton = document.getElementById("confirm-delete");
@@ -178,7 +177,6 @@ document.addEventListener("DOMContentLoaded", function () {
         };
     }
 
-    // Função para limpar o formulário
     function resetForm() {
         document.getElementById("task-title").value = "";
         document.getElementById("task-desc").value = "";
