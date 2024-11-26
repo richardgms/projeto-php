@@ -63,60 +63,76 @@ document.addEventListener("DOMContentLoaded", function () {
             taskBeingEdited.dataset.description = taskDesc;
             taskBeingEdited.dataset.dueDate = taskDueDate;
         } else {
-            const taskItem = document.createElement("div");
-            taskItem.classList.add("task-item");
-
-            const taskTagBackground =
-                taskList === "Pessoal" ? "#F4A259" : taskList === "Trabalho" ? "#8AB6D6" : "#007bff";
-
-            taskItem.innerHTML = `
-                <div class="task-item-left">
-                    <input type="checkbox" class="task-checkbox">
-                    <div class="task-item-content">
-                        <h3>${taskTitle}</h3>
-                    </div>
-                </div>
-                <div class="task-item-right">
-                    <div class="task-item-due-date">
-                        <img src="./assets/calendar.svg" width="15px" alt="Data">
-                        <span>${taskDueDate || "Sem prazo"}</span>
-                    </div>
-                    <div class="task-item-tag" style="background-color: ${taskTagBackground};">${taskList}</div>
-                </div>
-            `;
-
-            taskItem.dataset.description = taskDesc;
-            taskItem.dataset.dueDate = taskDueDate;
-
-            const checkbox = taskItem.querySelector(".task-checkbox");
-            const taskTitleElement = taskItem.querySelector(".task-item-content h3");
-
-            checkbox.addEventListener("change", function (event) {
-                if (checkbox.checked) {
-                    taskTitleElement.style.textDecoration = "line-through";
-                    taskTitleElement.style.color = "#999";
-                } else {
-                    taskTitleElement.style.textDecoration = "none";
-                    taskTitleElement.style.color = "#000";
-                }
-                event.stopPropagation();
-            });
-
-            taskItem.addEventListener("click", function () {
-                openEditModal(taskItem);
-            });
-
-            if (taskContainer) {
-                taskContainer.appendChild(taskItem);
-            } else {
-                console.error("Erro: O contêiner de tarefas não foi encontrado.");
-            }
+            createTaskElement(
+                {
+                    title: taskTitle,
+                    description: taskDesc,
+                    dueDate: taskDueDate,
+                    list: taskList,
+                    completed: false,
+                },
+                true
+            );
         }
 
+        saveTasksToLocalStorage(); // Salvar no localStorage após a criação
         resetForm();
         taskCreate.style.display = "none";
     });
 
+    // Criar elemento de tarefa
+    function createTaskElement({ title, description, dueDate, list, completed }, appendToContainer = true) {
+        const taskItem = document.createElement("div");
+        taskItem.classList.add("task-item");
+
+        const taskTagBackground = list === "Pessoal" ? "#F4A259" : list === "Trabalho" ? "#8AB6D6" : "#007bff";
+
+        taskItem.innerHTML = `
+            <div class="task-item-left">
+                <input type="checkbox" class="task-checkbox" ${completed ? "checked" : ""}>
+                <div class="task-item-content">
+                    <h3 style="text-decoration: ${completed ? "line-through" : "none"}; color: ${
+            completed ? "#999" : "#000"
+        };">${title}</h3>
+                </div>
+            </div>
+            <div class="task-item-right">
+                <div class="task-item-due-date">
+                    <img src="./assets/calendar.svg" width="15px" alt="Data">
+                    <span>${dueDate || "Sem prazo"}</span>
+                </div>
+                <div class="task-item-tag" style="background-color: ${taskTagBackground};">${list}</div>
+            </div>
+        `;
+
+        taskItem.dataset.description = description;
+        taskItem.dataset.dueDate = dueDate;
+
+        const checkbox = taskItem.querySelector(".task-checkbox");
+        const taskTitleElement = taskItem.querySelector(".task-item-content h3");
+
+        checkbox.addEventListener("change", function (event) {
+            if (checkbox.checked) {
+                taskTitleElement.style.textDecoration = "line-through";
+                taskTitleElement.style.color = "#999";
+            } else {
+                taskTitleElement.style.textDecoration = "none";
+                taskTitleElement.style.color = "#000";
+            }
+            saveTasksToLocalStorage(); // Atualizar ao marcar/desmarcar
+            event.stopPropagation();
+        });
+
+        taskItem.addEventListener("click", function () {
+            openEditModal(taskItem);
+        });
+
+        if (appendToContainer) {
+            taskContainer.appendChild(taskItem);
+        }
+    }
+
+    // Abrir modal de edição
     function openEditModal(taskItem) {
         isEditing = true;
         taskBeingEdited = taskItem;
@@ -158,6 +174,7 @@ document.addEventListener("DOMContentLoaded", function () {
         taskCreate.style.display = "flex";
     }
 
+    // Mostrar modal de confirmação
     function showConfirmModal() {
         const confirmModal = document.getElementById("confirm-modal");
         const confirmDeleteButton = document.getElementById("confirm-delete");
@@ -167,6 +184,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         confirmDeleteButton.onclick = function () {
             taskBeingEdited.remove();
+            saveTasksToLocalStorage();
             taskCreate.style.display = "none";
             resetForm();
             confirmModal.style.display = "none";
@@ -177,6 +195,7 @@ document.addEventListener("DOMContentLoaded", function () {
         };
     }
 
+    // Resetar formulário
     function resetForm() {
         document.getElementById("task-title").value = "";
         document.getElementById("task-desc").value = "";
@@ -184,6 +203,25 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("task-list").selectedIndex = 0;
     }
 
+    // Salvar tarefas no localStorage
+    function saveTasksToLocalStorage() {
+        const tasks = Array.from(taskContainer.querySelectorAll(".task-item")).map((task) => ({
+            title: task.querySelector(".task-item-content h3").textContent,
+            description: task.dataset.description || "",
+            dueDate: task.dataset.dueDate || "",
+            list: task.querySelector(".task-item-tag").textContent,
+            completed: task.querySelector(".task-checkbox").checked,
+        }));
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
+
+    // Carregar tarefas do localStorage
+    function loadTasksFromLocalStorage() {
+        const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+        tasks.forEach((taskData) => createTaskElement(taskData, true));
+    }
+
+    // Filtros e ordenação
     const personalFilter = document.querySelector('a[href="#personal"]');
     const workFilter = document.querySelector('a[href="#work"]');
     const todayFilter = document.querySelector('a[href="#today"]');
@@ -281,4 +319,7 @@ document.addEventListener("DOMContentLoaded", function () {
         tasks.forEach((task) => taskContainer.appendChild(task));
         removeNoTasksMessage();
     }
+
+    // Inicializar tarefas ao carregar a página
+    loadTasksFromLocalStorage();
 });
