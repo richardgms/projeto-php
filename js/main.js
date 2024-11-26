@@ -61,6 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 taskList === "Pessoal" ? "#F4A259" : "#8AB6D6";
 
             taskBeingEdited.dataset.description = taskDesc;
+            taskBeingEdited.dataset.dueDate = taskDueDate;
         } else {
             const taskItem = document.createElement("div");
             taskItem.classList.add("task-item");
@@ -85,11 +86,11 @@ document.addEventListener("DOMContentLoaded", function () {
             `;
 
             taskItem.dataset.description = taskDesc;
+            taskItem.dataset.dueDate = taskDueDate;
 
             const checkbox = taskItem.querySelector(".task-checkbox");
             const taskTitleElement = taskItem.querySelector(".task-item-content h3");
 
-            // Evento para riscar o título ao marcar/desmarcar o checkbox
             checkbox.addEventListener("change", function (event) {
                 if (checkbox.checked) {
                     taskTitleElement.style.textDecoration = "line-through";
@@ -98,10 +99,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     taskTitleElement.style.textDecoration = "none";
                     taskTitleElement.style.color = "#000";
                 }
-                event.stopPropagation(); // Impedir que o clique no checkbox abra o painel de edição
+                event.stopPropagation();
             });
 
-            // Evento para abrir o modal de edição ao clicar fora do checkbox
             taskItem.addEventListener("click", function () {
                 openEditModal(taskItem);
             });
@@ -123,12 +123,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const taskTitle = taskItem.querySelector(".task-item-content h3").textContent;
         const taskDesc = taskItem.dataset.description || "";
-        const taskDueDate = taskItem.querySelector(".task-item-due-date span").textContent;
+        const taskDueDate = taskItem.dataset.dueDate || "";
         const taskList = taskItem.querySelector(".task-item-tag").textContent;
 
         document.getElementById("task-title").value = taskTitle;
         document.getElementById("task-desc").value = taskDesc;
-        document.getElementById("due-date").value = taskDueDate === "Sem prazo" ? "" : taskDueDate;
+        document.getElementById("due-date").value = taskDueDate;
 
         const taskListSelect = document.getElementById("task-list");
         taskListSelect.value = taskList;
@@ -182,5 +182,103 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("task-desc").value = "";
         document.getElementById("due-date").value = "";
         document.getElementById("task-list").selectedIndex = 0;
+    }
+
+    const personalFilter = document.querySelector('a[href="#personal"]');
+    const workFilter = document.querySelector('a[href="#work"]');
+    const todayFilter = document.querySelector('a[href="#today"]');
+    const upcomingFilter = document.querySelector('a[href="#upcoming"]');
+
+    personalFilter.addEventListener("click", function (event) {
+        event.preventDefault();
+        filterTasks("Pessoal");
+    });
+
+    workFilter.addEventListener("click", function (event) {
+        event.preventDefault();
+        filterTasks("Trabalho");
+    });
+
+    todayFilter.addEventListener("click", function (event) {
+        event.preventDefault();
+        filterTodayTasks();
+    });
+
+    upcomingFilter.addEventListener("click", function (event) {
+        event.preventDefault();
+        sortTasksByDate();
+    });
+
+    function filterTasks(tag) {
+        const tasks = taskContainer.querySelectorAll(".task-item");
+        tasks.forEach((task) => {
+            const taskTag = task.querySelector(".task-item-tag").textContent;
+            if (taskTag === tag) {
+                task.style.display = "flex";
+            } else {
+                task.style.display = "none";
+            }
+        });
+        removeNoTasksMessage();
+    }
+
+    function filterTodayTasks() {
+        const tasks = taskContainer.querySelectorAll(".task-item");
+        const today = new Date().toISOString().split("T")[0];
+        let hasTasks = false;
+
+        tasks.forEach((task) => {
+            const taskDueDate = task.dataset.dueDate || "";
+            if (taskDueDate === today) {
+                task.style.display = "flex";
+                hasTasks = true;
+            } else {
+                task.style.display = "none";
+            }
+        });
+
+        if (!hasTasks) {
+            showNoTasksMessage("Não há tarefas para o dia de hoje.");
+        } else {
+            removeNoTasksMessage();
+        }
+    }
+
+    function showNoTasksMessage(message) {
+        let noTasksMessage = document.getElementById("no-tasks-message");
+        if (!noTasksMessage) {
+            noTasksMessage = document.createElement("div");
+            noTasksMessage.id = "no-tasks-message";
+            noTasksMessage.textContent = message;
+            noTasksMessage.style.textAlign = "center";
+            noTasksMessage.style.marginTop = "20px";
+            noTasksMessage.style.fontSize = "16px";
+            noTasksMessage.style.color = "#555";
+            taskContainer.appendChild(noTasksMessage);
+        }
+    }
+
+    function removeNoTasksMessage() {
+        const noTasksMessage = document.getElementById("no-tasks-message");
+        if (noTasksMessage) {
+            noTasksMessage.remove();
+        }
+    }
+
+    function sortTasksByDate() {
+        const tasks = Array.from(taskContainer.querySelectorAll(".task-item"));
+
+        tasks.forEach((task) => {
+            task.style.display = "flex";
+        });
+
+        tasks.sort((a, b) => {
+            const dateA = new Date(a.dataset.dueDate || Infinity);
+            const dateB = new Date(b.dataset.dueDate || Infinity);
+            return dateA - dateB;
+        });
+
+        tasks.forEach((task) => taskContainer.appendChild(task));
+        removeNoTasksMessage();
     }
 });
